@@ -1,0 +1,1 @@
+Invoke-RestMethod -Method 'Put' -Uri "https://api.github.com/orgs/PSW-2020-ORG9/teams/developers/repos/PSW-2020-ORG9/test" -Headers @{Authorization="Bearer $env:TOKEN"; Accept="application/vnd.github.inertia-preview+json"} -Body '{"permission":"pull"}'
