@@ -22,6 +22,9 @@ pr: none
 schedules:
 - cron: "0 0 * * 6"
   displayName: Weekly Sunday disable Developer Write Access
+  branches:
+    exclude: 
+    - master
   always: true
 
 steps:
