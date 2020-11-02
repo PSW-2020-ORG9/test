@@ -28,15 +28,17 @@ schedules:
   always: true
 
 steps:
-#- task: PowerShell@2
-#  inputs:
-#    targetType: 'inline'
-#    script: 
-#      Invoke-RestMethod -Method 'Put' -Uri "https://api.github.com/orgs/PSW-2020-ORG9/teams/developers/repos/PSW-2020-ORG9/test" -Headers @{Authorization="Bearer $env:TOKEN"; Accept="application/vnd.github.inertia-preview+json"} -Body '{"permission":"pull"}'
-#  env:
-#    TOKEN: $(token)
 - task: PowerShell@2
   inputs:
-    filePath: 'devops/script.ps1'
+    targetType: 'inline'
+    script: |
+      $uri = "https://api.github.com/orgs/PSW-2020-ORG9/teams/developers/repos/PSW-2020-ORG9/test"
+      $header = @{Authorization="Bearer $env:TOKEN"; Accept="application/vnd.github.inertia-preview+json"}
+      Invoke-RestMethod -Method 'Put' -Uri $uri -Headers $header -Body '{"permission":"pull"}'
   env:
     TOKEN: $(token)
+#- task: PowerShell@2
+#  inputs:
+#    filePath: 'devops/script.ps1'
+#  env:
+#    TOKEN: $(token)
