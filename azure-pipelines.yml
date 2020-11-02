@@ -33,5 +33,5 @@ steps:
     targetType: 'inline'
     script: 
       $uri = "https://api.github.com/orgs/PSW-2020-ORG9/teams/developers/repos/PSW-2020-ORG9/test"
-      $headers = @{Authorization="Bearer $(token)"; Accept="application/vnd.github.inertia-preview+json"}
+      $headers = @{Authorization="Bearer $(env:token)"; Accept="application/vnd.github.inertia-preview+json"}
       Invoke-RestMethod -Method 'Put' -Uri $uri -Headers $headers -Body '{"permission":"pull"}'
