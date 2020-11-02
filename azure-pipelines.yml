@@ -20,7 +20,7 @@ pr: none
 
 
 schedules:
-- cron: "* * * * *"
+- cron: "0 0 * * Mon"
   displayName: Weekly Sunday disable Developer Write Access
   branches:
     exclude: 
