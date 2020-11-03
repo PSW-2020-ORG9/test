@@ -21,5 +21,6 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      dir
+      git checkout master
+      git --no-pager log --graph --all --full-history --since=2.weeks
     workingDirectory: '$(Agent.BuildDirectory)/s'
