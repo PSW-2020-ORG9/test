@@ -20,7 +20,7 @@ pr: none
 
 
 schedules:
-- cron: "0 23 * * Sun/2"
+- cron: "0 23 * * Sun"
   displayName: Weekly Sunday disable Developer Write Access
   branches:
     exclude:
@@ -34,16 +34,11 @@ steps:
     script: |
       $uri = "https://api.github.com/orgs/PSW-2020-ORG9/teams/developers/repos/PSW-2020-ORG9/test"
       $header = @{Authorization="Bearer $env:TOKEN"; Accept="application/vnd.github.inertia-preview+json"}
-      if($env:SPRINTPART -eq 2){
+      if([int]$(Get-Date -UFormat %V) % 2 -eq 1){
         Invoke-RestMethod -Method 'Put' -Uri $uri -Headers $header -Body '{"permission":"pull"}'
-        $env:SPRINTPART = 0
-      } else {
-        $env:SPRINTPART = $env:SPRINTPART + 1
       }
-      
   env:
     TOKEN: $(token)
-    SPRINTPART: $(sprintpart)
 #- task: PowerShell@2
 #  inputs:
 #    filePath: 'devops/script.ps1'
