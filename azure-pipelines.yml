@@ -34,11 +34,9 @@ steps:
     script: |
       $uri = "https://api.github.com/orgs/PSW-2020-ORG9/teams/developers/repos/PSW-2020-ORG9/test"
       $header = @{Authorization="Bearer $env:TOKEN"; Accept="application/vnd.github.inertia-preview+json"}
-      if([int]$(Get-Date -UFormat %V) % 2 -eq 0){
+      if($([int]$(Get-Date -UFormat %V)+1) % 2 -eq 0){
         Write-Host "oh yes"
         Invoke-RestMethod -Method 'Put' -Uri $uri -Headers $header -Body '{"permission":"pull"}'
-      } else {
-        Write-Host "oh no"
       }
   env:
     TOKEN: $(token)
