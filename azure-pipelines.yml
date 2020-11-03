@@ -34,7 +34,7 @@ steps:
     script: |
       $uri = "https://api.github.com/orgs/PSW-2020-ORG9/teams/developers/repos/PSW-2020-ORG9/test"
       $header = @{Authorization="Bearer $env:TOKEN"; Accept="application/vnd.github.inertia-preview+json"}
-      if($env:SPRINTPART == 2){
+      if($env:SPRINTPART -eq 2){
         Invoke-RestMethod -Method 'Put' -Uri $uri -Headers $header -Body '{"permission":"pull"}'
         $env:SPRINTPART = 0
       } else {
